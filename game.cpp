@@ -3,12 +3,12 @@
 #include <iostream>
 
 
-void framebuffer_size_callback(GLFWwindow* window, int width, int height)
+void framebuffer_size_callback(GLFWwindow* window, int width, int height) //This function changes renderer size
 {
     glViewport(0, 0, width, height);
 } 
 
-void processInput(GLFWwindow *window)
+void processInput(GLFWwindow *window) //This function closes window if "X" button is pressed
 {
     if(glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
         glfwSetWindowShouldClose(window, true);
@@ -22,7 +22,7 @@ int main()
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE); //tell GLFWto use the core-profile
     //glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 
-    GLFWwindow* window = glfwCreateWindow(800, 600, "Game v1.0", NULL, NULL); //create a window object
+    GLFWwindow* window = glfwCreateWindow(1200, 800, "Game v1.0", NULL, NULL); //create a window object
     if (window == NULL)
     {
         std::cout << "Failed to create GLFW window" << std::endl;
@@ -42,30 +42,20 @@ int main()
     //ViewPort size
     glViewport(0, 0, 800, 600); //tell OpenGL the size of the rendering window
 
-    void framebuffer_size_callback(GLFWwindow* window, int width, int height); 
+    glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 
-
-    /*
+    //render loop
     while(!glfwWindowShouldClose(window))
     {
-        glfwSwapBuffers(window);
-        glfwPollEvents();    
-        
-    }
-    */
-
-    // render loop
-    while(!glfwWindowShouldClose(window))
-    {
-        // input
+        //input
         processInput(window);
 
-        // rendering commands here
+        //rendering commands here
         glClearColor(1.0f,1.0f,0.0f, 1.0f);    //yellow
         glClear(GL_COLOR_BUFFER_BIT);
         
 
-        // check and call events and swap the buffers
+        //check and call events and swap the buffers
         glfwPollEvents();
         glfwSwapBuffers(window);
     }
