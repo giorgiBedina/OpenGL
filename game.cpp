@@ -6,7 +6,13 @@
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
     glViewport(0, 0, width, height);
-}  
+} 
+
+void processInput(GLFWwindow *window)
+{
+    if(glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+        glfwSetWindowShouldClose(window, true);
+}
 
 int main()
 {
@@ -39,11 +45,29 @@ int main()
     void framebuffer_size_callback(GLFWwindow* window, int width, int height); 
 
 
+    /*
     while(!glfwWindowShouldClose(window))
     {
-        glClear(GL_COLOR_BUFFER_BIT);
         glfwSwapBuffers(window);
         glfwPollEvents();    
+        
+    }
+    */
+
+    // render loop
+    while(!glfwWindowShouldClose(window))
+    {
+        // input
+        processInput(window);
+
+        // rendering commands here
+        glClearColor(1.0f,1.0f,0.0f, 1.0f);    //yellow
+        glClear(GL_COLOR_BUFFER_BIT);
+        
+
+        // check and call events and swap the buffers
+        glfwPollEvents();
+        glfwSwapBuffers(window);
     }
 
   
