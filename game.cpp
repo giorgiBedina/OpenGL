@@ -8,7 +8,7 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height) //This
     glViewport(0, 0, width, height);
 } 
 
-void processInput(GLFWwindow *window) //This function closes window if "X" button is pressed
+void processQuitInput(GLFWwindow *window) //This function closes window if "X" button is pressed
 {
     if(glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
         glfwSetWindowShouldClose(window, true);
@@ -43,17 +43,17 @@ int main()
     //ViewPort size
     glViewport(0, 0, 800, 600); //tell OpenGL the size of the rendering window
 
-    glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+    glfwSetFramebufferSizeCallback(window, framebuffer_size_callback); //change rendere size according to window size
 
     //render loop
-    while(!glfwWindowShouldClose(window))
+    while(!glfwWindowShouldClose(window)) //While window is alive
     {
         //input
-        processInput(window);
+        processQuitInput(window); //quit window if "X" is pressed
 
         //rendering commands here
-        glClearColor(1.0f,1.0f,0.0f, 1.0f);    //yellow
-        glClear(GL_COLOR_BUFFER_BIT);
+        glClearColor(1.0f,1.0f,0.0f, 1.0f);    //set screen color setting as yellow
+        glClear(GL_COLOR_BUFFER_BIT); //set screen 
         
 
         //check and call events and swap the buffers
