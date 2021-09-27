@@ -22,7 +22,8 @@ int main()
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE); //tell GLFWto use the core-profile
     //glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 
-    GLFWwindow* window = glfwCreateWindow(1200, 800, "Game v1.0", NULL, NULL); //create a window object
+    GLFWwindow* window = glfwCreateWindow(1440, 900, "Game v1.0", glfwGetPrimaryMonitor(), NULL); //create a window object
+    //3rd parameter is monitor , so i used glfwGetPrimaryMonitor() , so i could make window fullscreen  
     if (window == NULL)
     {
         std::cout << "Failed to create GLFW window" << std::endl;
